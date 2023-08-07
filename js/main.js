@@ -41,19 +41,19 @@ let homeSwiper = new Swiper(".home-swiper", {
 })
 
 /*=============== CHANGE BACKGROUND HEADER ===============*/
-function scrollHeader(){
-    const header = document.getElementById('header')
+// function scrollHeader(){
+//     const header = document.getElementById('header')
    
-    // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
-    if(this.scrollY >= 50 && window.innerWidth>=767){
-        header.classList.add('scroll-header');
+//     // When the scroll is greater than 50 viewport height, add the scroll-header class to the header tag
+//     if(this.scrollY >= 50 && window.innerWidth>=767){
+//         header.classList.add('scroll-header');
         
          
-    } 
-    else 
-         header.classList.remove('scroll-header');
-}
-window.addEventListener('scroll', scrollHeader)
+//     } 
+//     else 
+//          header.classList.remove('scroll-header');
+// }
+// window.addEventListener('scroll', scrollHeader)
 // =================animate home--image================
 
 
@@ -122,3 +122,27 @@ sr.reveal(`.home-swiper, .new-swiper, .newsletter__container`)
 sr.reveal(`.category__data, .trick__content, .footer__content`,{interval: 100})
 sr.reveal(`.about__data, .discount__img`,{origin: 'left'})
 sr.reveal(`.about__img, .discount__data`,{origin: 'right'})
+// ===================dark mode
+const toggleSwitch = document.querySelector('.theme-switch input[type="checkbox"]');
+const currentTheme = localStorage.getItem('theme');
+
+if (currentTheme) {
+    document.documentElement.setAttribute('data-theme', currentTheme);
+  
+    if (currentTheme === 'dark') {
+        toggleSwitch.checked = true;
+    }
+}
+
+function switchTheme(e) {
+    if (e.target.checked) {
+        document.documentElement.setAttribute('data-theme', 'dark');
+        localStorage.setItem('theme', 'dark');
+    }
+    else {        document.documentElement.setAttribute('data-theme', 'light');
+          localStorage.setItem('theme', 'light');
+    }    
+}
+
+toggleSwitch.addEventListener('change', switchTheme, false);
+
